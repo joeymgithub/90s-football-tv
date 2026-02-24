@@ -1,2 +1,3 @@
 # 90s-football-tv
-90s football on a TV. 
+
+Basically I just made a mini TV that only shows clips from 90s football. Enjoy. 
