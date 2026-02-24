@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>90s Football TV</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="tv-wrapper">
+  <div class="tv-off-overlay"></div> <!-- 👈 your black square -->
+  <div class="overlay"></div>
+  <div class="mute-indicator">🔇</div>
+  <div class="pause-indicator">⏸</div>
+  <div class="crt-overlay"></div>
+
+  <img src="images/tv-frame.png" class="tv-frame-img" alt="">
+</div>
+
+  <div class="remote">
+    <div class="remote-top"></div>
+
+    <button id="powerBtn" class="remote-btn power">⏻</button>
+
+    <div class="channel-controls">
+      <button id="channelDownBtn" class="channel-btn">▲</button>
+      <div class="channel-text">CH</div>
+      <button id="channelUpBtn" class="channel-btn">▼</button>
+    </div>
+
+    <button id="pauseBtn" class="remote-btn">⏸</button>
+    <button id="muteBtn" class="remote-btn" disabled>🔈</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

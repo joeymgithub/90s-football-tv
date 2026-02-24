@@ -1,0 +1,259 @@
+/* =========================
+   BASE LAYOUT
+========================= */
+
+body {
+  margin: 0;
+  background: rgb(255, 255, 255);
+  height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+
+  font-family: "Courier New", monospace;
+  color: #fff;
+}
+
+
+/* =========================
+   TV WRAPPER (PNG FRAME)
+========================= */
+
+.tv-wrapper {
+  position: relative;
+  width: 700px;          /* must match your PNG */
+  aspect-ratio: 4 / 3;
+}
+
+/* Video inside the screen cut-out */
+.tv-video {
+  position: absolute;
+  top: 10%;      /* tweak to align with PNG hole */
+  left: 12%;
+  width: 76%;
+  height: 64%;
+
+  object-fit: cover;
+  background: black;
+  z-index: 1;
+}
+
+/* Channel + title overlay */
+.overlay {
+  position: absolute;
+  top: 62%;
+  left: 16%;
+  z-index: 2;
+
+  color: #ff6600;
+  font-size: 14px;
+  font-weight:900;
+  pointer-events: none;
+}
+
+.clip-title {
+  display: block;
+}
+
+.channel-number {
+  font-size: 32px;
+  font-style: bold;
+}
+
+/* CRT scanlines */
+.crt-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.04),
+    rgba(255,255,255,0.04) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+
+  opacity: 0.25;
+}
+
+/* TV frame image */
+.tv-frame-img {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: block;
+  z-index: 4;
+}
+
+
+/* =========================
+   REMOTE BODY
+========================= */
+
+.remote {
+  width: 100px;
+  padding: 18px 14px 24px;
+
+  background: linear-gradient(#2b2b2b, #1a1a1a);
+  border-radius: 22px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+
+  box-shadow:
+   inset 0 -3px 5px rgba(0,0,0,0.7),
+    inset 0 2px 2px rgba(255,255,255,0.15),
+    0 2px 4px rgba(0,0,0,0.6);
+}
+
+
+/* =========================
+   REMOTE IR LIGHT
+========================= */
+
+.remote-top {
+  width: 18px;
+  height: 6px;
+  border-radius: 6px;
+
+  background: #400;
+  box-shadow: 0 0 6px rgba(255,0,0,0.4);
+}
+
+.remote-top.on {
+  background: #ff0000;
+  box-shadow: 0 0 14px rgba(255,0,0,1);
+}
+
+
+/* =========================
+   REMOTE BUTTONS
+========================= */
+
+.remote-btn {
+  width: 60px;
+  height: 48px;
+  border-radius: 999px;
+  border: none;
+
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+
+  background: grey;
+  color: black;
+
+  box-shadow:
+    inset 0 -3px 5px rgba(0,0,0,0.7),
+    inset 0 2px 2px rgba(255,255,255,0.15),
+    0 2px 4px rgba(0,0,0,0.6);
+
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.remote-btn:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow:
+    inset 0 2px 4px rgba(0,0,0,0.8);
+}
+
+
+/* Power button stands out */
+.remote-btn.power {
+  background: linear-gradient(#ff7a18, #e45c00);
+  color: #111;
+}
+
+
+/* =========================
+   CHANNEL CONTROLS
+========================= */
+
+.channel-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.channel-text {
+  font-size: 12px;
+  color: #aaa;
+}
+
+.channel-btn {
+  width: 22px;
+  height: 38px;
+  padding: 0;
+
+  font-size: 14px;
+  font-weight: bold;
+
+  background: linear-gradient(#eeeeee, #cfcfcf);
+  color: #111;
+
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+
+  box-shadow:
+    inset 0 -2px 2px rgba(0,0,0,0.25),
+    inset 0 1px 1px rgba(255,255,255,0.7),
+    0 2px 3px rgba(0,0,0,0.5);
+
+  transition: transform 0.08s ease;
+}
+
+.channel-btn:active {
+  transform: translateY(1px);
+}
+
+/* =========================
+   ON-SCREEN INDICATORS
+========================= */
+
+/* Mute icon (top-left) */
+.mute-indicator {
+  position: absolute;
+  top: 16%;
+  left: 16%;
+  z-index: 2;
+
+  font-size: 28px;
+  opacity: 0.85;
+
+  display: none;
+  pointer-events: none;
+}
+
+/* Pause icon (centre screen) */
+.pause-indicator {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  bottom: 16%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 72px;
+  color: #ff6600;
+  text-shadow: 0 0 12px rgba(0,0,0,0.6);
+
+  pointer-events: none;
+}
+
+.tv-off-overlay {
+  position: absolute;
+  top: 12%;       /* roughly inside the screen area */
+  left: 12%;
+  width: 76%;     /* match your video width for now */
+  height: 64%;    /* match your video height */
+  background: black;
+  z-index: 0;     /* behind video and overlays, but above body background */
+}
